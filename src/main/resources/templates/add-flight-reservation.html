@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Flight Reservation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e2e2e2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #5c6bc0;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #5c6bc0;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #5c6bc0;
+        }
+
+        button {
+            width: 100%;
+            background-color: #5c6bc0;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3c4a92;
+        }
+
+    </style>
+</head>
+<body>
+    <form th:action="@{/flight-reservations}" th:object="${flightReservation}" method="post">
+        <h2>Add Flight Reservation</h2>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+
+        <label for="numberOfPassengers">Number of Passengers:</label>
+        <input type="number" id="numberOfPassengers" name="numberOfPassengers" th:field="*{numberOfPassengers}" min="1" required>
+
+        <label for="classType">Class Type:</label>
+        <select id="classType" name="classType" th:field="*{classType}" required>
+            <option value="Economy">Economy class</option>
+            <option value="Business">Business class</option>
+            <option value="First">First class</option>
+        </select>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
+
+        <label for="time">Time of Departure:</label>
+        <input type="time" id="time" name="time" th:field="*{time}" required>
+
+        <label for="dateOfDeparting">Date of Departure:</label>
+        <input type="date" id="dateOfDeparting" name="dateOfDeparting" th:field="*{dateOfDeparting}" required>
+
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>
